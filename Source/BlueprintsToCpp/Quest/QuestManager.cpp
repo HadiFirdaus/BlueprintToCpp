@@ -16,7 +16,7 @@ AQuestManager::AQuestManager()
 void AQuestManager::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	FunctionToTestGit();
 }
 
 // Called every frame
@@ -43,4 +43,9 @@ void AQuestManager::CompleteQuest_Implementation(FName QuestId, bool CompleteWho
 FQuestInfo AQuestManager::GetQuest(FName Name) const
 {
 	return QuestList[GetQuestIndex(Name)];
+}
+
+void AQuestManager::FunctionToTestGit()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Commit and push to Git repository"));
 }

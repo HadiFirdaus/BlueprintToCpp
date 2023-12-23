@@ -38,9 +38,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	int32 GetQuestIndex(FName QuestId) const;
 
-	UFUNCTION()
-	void FunctionToTestGit();
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;

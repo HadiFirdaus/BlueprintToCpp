@@ -28,6 +28,7 @@ void UGrabber::BeginPlay()
 void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
+	GetPhysicsComponent()->SetTargetLocationAndRotation(GetHoldLocation(), GetOwner()->GetActorRotation());
 }
 
 FVector UGrabber::GetMaxGrabLocation() const

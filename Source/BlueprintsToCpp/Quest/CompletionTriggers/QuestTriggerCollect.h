@@ -19,12 +19,16 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "QTriggerCollect++")
+	bool IsCorrectItem(class AActor* Item);
+	UFUNCTION(BlueprintCallable, Category = "QTriggerCollect++")
+	void MarkItemSeen(AActor* NewItem);
+	UFUNCTION(BlueprintPure, Category = "QTriggerCollect++")
+	bool HasNotSeenItem(AActor* ItemToFind);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
-	UFUNCTION(BlueprintCallable, BlueprintPure, Category="QTriggerCollect++")
-	bool IsCorrectItem(class AActor* Item);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	class USceneComponent* SceneRoot;
@@ -35,5 +39,5 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FName ItemTag;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<AActor*> SeenItems;
+	TSet<AActor*> SeenItems;
 };

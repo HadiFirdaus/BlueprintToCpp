@@ -35,3 +35,13 @@ bool AQuestTriggerCollect::IsCorrectItem(class AActor* Item)
 {
 	return Item->ActorHasTag(ItemTag);
 }
+
+void AQuestTriggerCollect::MarkItemSeen(AActor* NewItem)
+{
+	SeenItems.Add(NewItem);
+}
+
+bool AQuestTriggerCollect::HasNotSeenItem(AActor* ItemToFind)
+{
+	return !SeenItems.Contains(ItemToFind);
+}

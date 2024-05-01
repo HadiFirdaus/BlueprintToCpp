@@ -2,14 +2,23 @@
 
 
 #include "Core/QuestManagement.h"
+#include "Quest/QuestInfo.h"
 
-int32 UQuestManagement::SomeNumStatic = 0;
-
-int32 UQuestManagement::GetSomeNum() {
-	return SomeNumStatic;
+void UQuestManagement::CompleteQuest(FName QuestId, bool CompleteWholeQuest)
+{
+	int32 QuestIndex = GetQuestIndex(QuestId);
+	FQuestInfo Quest = QuestList[QuestIndex];
+	if (CompleteWholeQuest) {
+		QuestList[QuestIndex].Progress = Quest.ProgressTotal;
+	}
+	else
+	{
+		QuestList[QuestIndex].Progress = FMath::Min(Quest.Progress + 1, Quest.ProgressTotal);	//IncrementProgress
+	}
+	//CompletedQuest.Broadcast(QuestIndex);	//Call CompletedQuest()
 }
 
-void UQuestManagement::SetSomeNum()
+FQuestInfo UQuestManagement::GetQuest(FName Name) const
 {
-	SomeNumStatic++;
+	return QuestList[GetQuestIndex(Name)];
 }

@@ -2,6 +2,7 @@
 
 
 #include "QuestManager.h"
+#include "Components/SceneComponent.h"
 
 // Sets default values
 AQuestManager::AQuestManager()
@@ -9,7 +10,8 @@ AQuestManager::AQuestManager()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	
+	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
+	RootComponent = SceneRoot;
 }
 
 // Called when the game starts or when spawned

@@ -27,14 +27,22 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	bool IsActiveQuest(FName QuestId) const;
 
+	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
+	void IsActiveIndex(int32 Index, bool& Active) const;
+
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FCompletedQuestSignature CompletedQuest;
+
+	UPROPERTY(VisibleAnywhere)
+	class USceneComponent* SceneRoot;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "C++")
 	TArray<FQuestInfo>	QuestList;
+
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	int32 GetQuestIndex(FName QuestId) const;
 

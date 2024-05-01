@@ -22,5 +22,4 @@ struct BLUEPRINTSTOCPP_API FQuestInfo
 	int32 Progress;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere)
 	int32 ProgressTotal;
-	
 };

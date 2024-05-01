@@ -7,7 +7,7 @@
 #include "Quest/QuestInfo.h"
 #include "QuestManagement.generated.h"
 
-//DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCompletedQuestSignature, int32, Index);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FCompletedQuestSignatureTEMP, int32, Index);
 /**
  * 
  */
@@ -17,8 +17,11 @@ class BLUEPRINTSTOCPP_API UQuestManagement : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 public:
+	UQuestManagement();
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+	virtual void Deinitialize() override;
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent)
 	void CompleteQuest(FName QuestId, bool CompleteWholeQuest);
 
 	UFUNCTION(BlueprintPure)
@@ -30,8 +33,15 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	void IsActiveIndex(int32 Index, bool& Active) const;
 
-	//UPROPERTY(BlueprintAssignable, BlueprintCallable)
-	//FCompletedQuestSignature CompletedQuest;
+	UPROPERTY(BlueprintAssignable, BlueprintCallable)
+	FCompletedQuestSignatureTEMP CompletedQuest;
+
+	UFUNCTION(BlueprintCallable, Category="QuestManagement++")
+	class UDataTable* GetQuestDT() const;
+
+	UFUNCTION(BlueprintCallable, Category="QuestManagement++")
+	void SetQuestDT(class UDataTable* QQuest_DT);
+
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "C++")
@@ -39,5 +49,8 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	int32 GetQuestIndex(FName QuestId) const;
+
+private:
+	static class UDataTable* Quest_DT;
 	
 };

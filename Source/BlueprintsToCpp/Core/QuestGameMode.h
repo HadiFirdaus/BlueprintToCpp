@@ -22,6 +22,9 @@ public:
 	UFUNCTION(BlueprintPure, Category = "QGameMode++")
 	class AQuestManager* GetQuestInstance();
 
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "QGameMode++")
+	class UDataTable* QuestDT;
+
 private:
 	UPROPERTY()
 	class AQuestManager* QuestInstance;

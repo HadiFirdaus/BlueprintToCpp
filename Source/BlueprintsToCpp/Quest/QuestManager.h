@@ -37,16 +37,9 @@ public:
 	class USceneComponent* SceneRoot;
 
 protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "C++")
 	TArray<FQuestInfo>	QuestList;
 
 	UFUNCTION(BlueprintImplementableEvent, BlueprintPure)
 	int32 GetQuestIndex(FName QuestId) const;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 };

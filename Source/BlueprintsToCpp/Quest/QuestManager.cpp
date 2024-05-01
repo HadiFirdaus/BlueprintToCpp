@@ -14,19 +14,6 @@ AQuestManager::AQuestManager()
 	RootComponent = SceneRoot;
 }
 
-// Called when the game starts or when spawned
-void AQuestManager::BeginPlay()
-{
-	Super::BeginPlay();
-}
-
-// Called every frame
-void AQuestManager::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-	
-}
-
 void AQuestManager::CompleteQuest_Implementation(FName QuestId, bool CompleteWholeQuest)
 {
 	int32 QuestIndex = GetQuestIndex(QuestId);

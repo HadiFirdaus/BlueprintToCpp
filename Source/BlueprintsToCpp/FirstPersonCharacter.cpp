@@ -3,6 +3,8 @@
 
 #include "FirstPersonCharacter.h"
 #include "Components/InputComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AFirstPersonCharacter::AFirstPersonCharacter()
@@ -38,7 +40,10 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 void AFirstPersonCharacter::Forward(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Forward AxisValue %f"), AxisValue);
+	//UCharacterMovementComponent* CharacterMovement = GetCharacterMovement();
+	//if (CharacterMovement) {
+	//	CharacterMovement->AddInputVector()
+	//}
 }
 
 void AFirstPersonCharacter::Jump()

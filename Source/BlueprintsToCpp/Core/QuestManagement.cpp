@@ -3,6 +3,7 @@
 
 #include "Core/QuestManagement.h"
 #include "Engine/DataTable.h"
+#include "Quest/QuestData.h"
 
 UDataTable* UQuestManagement::Quest_DT = nullptr;
 
@@ -38,19 +39,35 @@ void UQuestManagement::SetQuestDT(UDataTable* QQuest_DT) {
 
 void UQuestManagement::CompleteQuest_Implementation(FName QuestId, bool CompleteWholeQuest)
 {
-	int32 QuestIndex = GetQuestIndex(QuestId);
-	FQuestInfo Quest = QuestList[QuestIndex];
-	if (CompleteWholeQuest) {
-		QuestList[QuestIndex].Progress = Quest.ProgressTotal;
-	}
-	else
-	{
-		QuestList[QuestIndex].Progress = FMath::Min(Quest.Progress + 1, Quest.ProgressTotal);	//IncrementProgress
-	}
-	CompletedQuest.Broadcast(QuestIndex);	//Call CompletedQuest()
+	CompletedQuest.Broadcast(123);	//Call CompletedQuest()
 }
 
-FQuestInfo UQuestManagement::GetQuest(FName Name) const
+bool UQuestManagement::IsOneQuestComplete(FQuestData QuestData)
 {
-	return QuestList[GetQuestIndex(Name)];
+	return QuestData.Progress == QuestData.ProgressTotal;
+}
+
+bool UQuestManagement::IsOneActiveIndex(int32 Index)
+{
+	return false;
+}
+
+int32 UQuestManagement::GetQuestIndexFromName(FName QuestId) {
+	FQuestData* Item = Quest_DT->FindRow<FQuestData>(QuestId, "");
+	return 0;
+}
+
+void UQuestManagement::Temporary(FName RowName) {
+	GetQuestId(GetCurrentQuest(RowName));
+}
+
+FQuestData* UQuestManagement::GetCurrentQuest(FName RowName)
+{
+	FQuestData* currentQuest = Quest_DT->FindRow<FQuestData>(RowName, "");
+	return currentQuest;
+}
+
+FName UQuestManagement::GetQuestId(FQuestData* CurrentQuest) {
+	UE_LOG(LogTemp, Warning, TEXT("ID is: %s"), *CurrentQuest->QuestId.ToString());
+	return CurrentQuest->QuestId;
 }

@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Quest/CompletionTriggers/QuestTriggerCollect.h"
+#include "Completion Triggers/QuestTriggerCollect.h"
 #include "Components/SceneComponent.h"
 #include "Components/SphereComponent.h"
 

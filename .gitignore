@@ -74,6 +74,3 @@ Plugins/*/Intermediate/*
 
 # Cache files for the editor to use
 DerivedDataCache/*
-
-# Remove Content/AdvancedVillagePack/ and whatever folders followed
-Content/AdvancedVillagePack/

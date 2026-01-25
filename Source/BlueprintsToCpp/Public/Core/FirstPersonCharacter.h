@@ -18,6 +18,11 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	UPROPERTY(EditDefaultsOnly, Category= "FirstPersonCharacter++")
+	class UCameraComponent* FirstPersonCameraComponent;
+	UPROPERTY(EditDefaultsOnly, Category= "FirstPersonCharacter++")
+	class UPhysicsHandleComponent* PhysicsHandle;
+	
 
 public:	
 	// Called every frame
@@ -26,6 +31,9 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable, Category = "FirstPersonCharacter++")
+	void AddInputVector(float AxisValue, FVector ActorVector);
+	
 private:
 	void Forward(float AxisValue);
 	void Jump();

@@ -17,8 +17,6 @@ class BLUEPRINTSTOCPP_API ACuttableTree : public ATree
 public:
 	ACuttableTree();
 	
-protected:
-	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "CuttableTree++")
 	FTransform StartRotation;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "CuttableTree++")

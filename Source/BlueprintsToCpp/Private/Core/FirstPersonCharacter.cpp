@@ -2,7 +2,9 @@
 
 
 #include "FirstPersonCharacter.h"
+#include "Camera/CameraComponent.h"
 #include "Components/InputComponent.h"
+#include "PhysicsEngine/PhysicsHandleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 
@@ -11,7 +13,10 @@ AFirstPersonCharacter::AFirstPersonCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	
+	FirstPersonCameraComponent = CreateDefaultSubobject<UCameraComponent>("FirstPersonCameraComponent");
+	FirstPersonCameraComponent->SetupAttachment(RootComponent);
+	PhysicsHandle = CreateDefaultSubobject<UPhysicsHandleComponent>("PhysicsHandle");
 }
 
 // Called when the game starts or when spawned
@@ -49,4 +54,10 @@ void AFirstPersonCharacter::Forward(float AxisValue)
 void AFirstPersonCharacter::Jump()
 {
 	UE_LOG(LogTemp, Warning, TEXT("Jump"));
+}
+
+void AFirstPersonCharacter::AddInputVector(float AxisValue, FVector ActorVector)
+{
+	FVector WorldVector = ActorVector*AxisValue;
+	ACharacter::GetCharacterMovement()->AddInputVector(WorldVector, false);
 }

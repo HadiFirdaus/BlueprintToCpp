@@ -36,6 +36,9 @@ public:
 	
 private:
 	void Forward(float AxisValue);
-	void Jump();
+	void MoveRight(float AxisValue);
+	void StartJump();
+	void AddInputPitch(float AxisValue);
+	void AddInputYaw(float AxisValue);
 
 };

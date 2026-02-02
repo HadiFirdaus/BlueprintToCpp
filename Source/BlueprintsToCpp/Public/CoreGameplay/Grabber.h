@@ -17,6 +17,11 @@ public:
 	// Sets default values for this component's properties
 	UGrabber();
 
+	// Called every frame
+	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
+	/*UPROPERTY(EditDefaultsOnly, Category="Grabber++")
+	class */
+	
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -30,7 +35,7 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "Grabber++")
 	class UPhysicsHandleComponent* GetPhysicsComponent() const;
 	
-	UFUNCTION(BlueprintCallable, BlueprintImplementableEvent, Category = "Grabber++")
+	UFUNCTION(BlueprintNativeEvent, Category = "Grabber++")
 	void NotifyQuestActor(AActor* Actor);
 	
 	UFUNCTION(BlueprintCallable, Category = "Grabber++")
@@ -51,7 +56,4 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	float GrabRadius = 50.0f;
 
-public:	
-	// Called every frame
-	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 };

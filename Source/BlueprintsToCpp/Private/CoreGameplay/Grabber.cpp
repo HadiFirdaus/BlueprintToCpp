@@ -87,3 +87,13 @@ void UGrabber::Grabber()
 		}
 	}
 }
+
+void UGrabber::NotifyQuestActor_Implementation(AActor* Actor)
+{
+	/*AActor* Temp = Actor;
+	if (Temp)
+	{
+		Temp = Actor->GetComponentByClass();
+		
+	}*/
+}

@@ -39,21 +39,38 @@ void AFirstPersonCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
 	PlayerInputComponent->BindAxis("Forward", this, &AFirstPersonCharacter::Forward);
-	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFirstPersonCharacter::Jump);
-
+	PlayerInputComponent->BindAxis("LookUp", this, &AFirstPersonCharacter::AddInputPitch);
+	PlayerInputComponent->BindAxis("LookRight", this, &AFirstPersonCharacter::AddInputYaw);
+	PlayerInputComponent->BindAxis("Right", this, &AFirstPersonCharacter::MoveRight);
+	PlayerInputComponent->BindAction("Jump", IE_Pressed, this, &AFirstPersonCharacter::StartJump);
+	
 }
 
 void AFirstPersonCharacter::Forward(float AxisValue)
 {
-	//UCharacterMovementComponent* CharacterMovement = GetCharacterMovement();
-	//if (CharacterMovement) {
-	//	CharacterMovement->AddInputVector()
-	//}
+	FVector Temp = GetActorForwardVector();
+	AddInputVector(AxisValue, Temp);
 }
 
-void AFirstPersonCharacter::Jump()
+void AFirstPersonCharacter::MoveRight(float AxisValue)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Jump"));
+	FVector Temp = GetActorRightVector();
+	AddInputVector(AxisValue, Temp);
+}
+
+void AFirstPersonCharacter::StartJump()
+{
+	ACharacter::Jump();
+}
+
+void AFirstPersonCharacter::AddInputPitch(float AxisValue)
+{
+	AddControllerPitchInput(AxisValue);
+}
+
+void AFirstPersonCharacter::AddInputYaw(float AxisValue)
+{
+	AddControllerYawInput(AxisValue);
 }
 
 void AFirstPersonCharacter::AddInputVector(float AxisValue, FVector ActorVector)

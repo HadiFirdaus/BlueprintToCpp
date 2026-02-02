@@ -2,8 +2,16 @@
 
 
 #include "Core/QuestGameMode.h"
-#include "Quest/QuestManager.h"
-#include "Core/QuestManagement.h"
+#include "Components/BillboardComponent.h"
+/*#include "Quest/QuestManager.h"
+#include "Core/QuestManagement.h"*/
+
+AQuestGameMode::AQuestGameMode()
+{
+	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
+	RootComponent = SceneRoot;
+	BillboardComponent = CreateDefaultSubobject<UBillboardComponent>("BillboardComponent");
+}
 
 void AQuestGameMode::BeginPlay()
 {

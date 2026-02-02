@@ -15,10 +15,14 @@ class BLUEPRINTSTOCPP_API AQuestGameMode : public AGameModeBase
 	GENERATED_BODY()
 	
 public:
+	AQuestGameMode();
 
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
-
+	UPROPERTY(VisibleAnywhere, Category = "QGameMode++")
+	class USceneComponent* SceneRoot;
+	UPROPERTY(EditDefaultsOnly, Category = "QGameMode++")
+	class UBillboardComponent* BillboardComponent;
 	UFUNCTION(BlueprintPure, Category = "QGameMode++")
 	class AQuestManager* GetQuestInstance();
 

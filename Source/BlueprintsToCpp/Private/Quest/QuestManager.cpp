@@ -3,6 +3,8 @@
 
 #include "QuestManager.h"
 #include "Components/SceneComponent.h"
+#include "Components/BillboardComponent.h"
+
 
 // Sets default values
 AQuestManager::AQuestManager()
@@ -12,6 +14,7 @@ AQuestManager::AQuestManager()
 
 	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("SceneRoot"));
 	RootComponent = SceneRoot;
+	BillboardComponent = CreateDefaultSubobject<UBillboardComponent>("BillboardComponent");
 }
 
 void AQuestManager::CompleteQuest_Implementation(FName QuestId, bool CompleteWholeQuest)

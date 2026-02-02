@@ -33,8 +33,10 @@ public:
 	UPROPERTY(BlueprintAssignable, BlueprintCallable)
 	FCompletedQuestSignature CompletedQuest;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category= "QuestManager++")
 	class USceneComponent* SceneRoot;
+	UPROPERTY(EditDefaultsOnly, Category = "QGameMode++")
+	class UBillboardComponent* BillboardComponent;
 
 protected:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "C++")
